@@ -1,4 +1,4 @@
-console.logs('this is loaded');
+// console.logs('this is loaded');
 
 exports.spotify = {
   id: process.env.SPOTIFY_ID,

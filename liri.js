@@ -6,7 +6,7 @@ var keys = require('./keys.js');  //require keys.js file..for authentication det
 var Spotify = require('node-spotify-api');  //require spotify npm..for songs
 var moment = require('moment');  //require moment npm..
 var fs = require('fs')  //fs package to read from text file
-var cTable = require('console.table');
+var cTable = require('console.table'); //added to format table
 
 
 
@@ -68,7 +68,7 @@ if (process.argv[2] == 'concert-this' ) {
 });
 
 
-//if no song is provided then your program will default to "I Wanna Dance With Somebody"
+
 }else if (process.argv[2] == 'movie-this'){
   var movieName = process.argv.slice(3).join(" ");
   if (movieName == undefined) {
@@ -80,7 +80,7 @@ if (process.argv[2] == 'concert-this' ) {
     var result = JSON.parse(body);
     console.log("Title: " + result.Title);
     console.log("Release Year: " + result.Year);
-    console.log("IMDB Rating: " + result.imdbRatings);
+    console.log("IMDB Rating: " + result.imdbRatings[0].Value);
     console.log("Rotten Tomatoes: " + result.Ratings[1].Value);
     console.log("Country: " + result.Country);
     console.log("Language: " + result.Language);
@@ -90,7 +90,16 @@ if (process.argv[2] == 'concert-this' ) {
   });
 
 } else if (process.argv[2] == 'do-what-it-says'){
-  console.log ('do-what-it-says')
+  var fs = require("fs");
+  //read random.txt file
+  console.log ('do-what-it-says');
+  fs.readFile("random.txt", "utf8", function (error, data) {
+    if (error) {
+        return console.log(error)
 
 }
+
+})
+}
+
 
