@@ -75,7 +75,7 @@ if (process.argv[2] == 'concert-this' ) {
       movieName= "Mr.Nobody";
   }
   //request to OMDB
-  request('http://www.omdbapi.com/?i=tt3896198&apikey=OMDBKEY&t" + process.argv[3],function (error, response, body) {
+  request('https://www.omdbapi.com/?i=tt3896198&apikey=OMDBKEY&t' + process.argv[3],function (error, response, body) {
 
     var result = JSON.parse(body);
     console.log("Title: " + result.Title);
