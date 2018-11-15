@@ -74,7 +74,7 @@ if (process.argv[2] == 'concert-this' ) {
   if (movieName == undefined) {
       movieName= "Mr.Nobody";
   }
-  //request to OMDB
+  //request to OMDB......not working// not working .......// not working .......// not working .......// not working .......// not working .......
   request('https://www.omdbapi.com/?i=tt3896198&apikey=OMDBKEY&t' + process.argv[3],function (error, response, body) {
 
     var result = JSON.parse(body);
@@ -89,6 +89,7 @@ if (process.argv[2] == 'concert-this' ) {
     
   });
 
+  // not working .......// not working .......// not working .......// not working .......// not working .......// not working .......
 } else if (process.argv[2] == 'do-what-it-says'){
   var fs = require("fs");
   //read random.txt file
