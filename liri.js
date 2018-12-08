@@ -10,12 +10,14 @@ var cTable = require('console.table'); //added to format table
 
 
 
+
 var spotify = new Spotify({
   id: keys.spotify.id,
   secret: keys.spotify.secret
 });
 
-
+///////////////// CODE FOR....concert-this///////////////////////
+  
 if (process.argv[2] == 'concert-this' ) {
   var artist = process.argv.slice(3).join(" ")
   console.log(artist);
@@ -36,6 +38,9 @@ if (process.argv[2] == 'concert-this' ) {
     console.log("Date of Event " + moment(result.datetime).format("MM/DD/YYYY"));
     
   });
+
+  ///////////////// CODE FOR....spotify-this-song///////////////////////
+  
 
 } else if (process.argv[2] == 'spotify-this-song'){
 
@@ -67,40 +72,60 @@ if (process.argv[2] == 'concert-this' ) {
 
 });
 
-
-
+///////////////// CODE FOR....movie-this///////////////////////
+  
+// if no song is provided then your proram will default to --"I Wanna Dance With Somebody"
 }else if (process.argv[2] == 'movie-this'){
   var movieName = process.argv.slice(3).join(" ");
   if (movieName == undefined) {
       movieName= "Mr.Nobody";
   }
   //request to OMDB......not working// not working .......// not working .......// not working .......// not working .......// not working .......
-  request('https://www.omdbapi.com/?i=tt3896198&apikey=OMDBKEY&t' + process.argv[3],function (error, response, body) {
+  // request('https://www.omdbapi.com/?apikey=' + process.env.OMDBKEY + '&t=' + movieprocess.argv[3],function (error, response, body) {
+  request('https://www.omdbapi.com/?t=' + process.env.OMDBKEY + "&y=&plot=short&apikey=" + process.argv[3],function (error, response, body) {
+    if (error){
+      return console.log(error);
+  }else {
+    console.log(response);
+
 
     var result = JSON.parse(body);
     console.log("Title: " + result.Title);
     console.log("Release Year: " + result.Year);
-    console.log("IMDB Rating: " + result.imdbRatings[0].Value);
+    console.log("IMDB Rating: " + result.imdbRating);
     console.log("Rotten Tomatoes: " + result.Ratings[1].Value);
     console.log("Country: " + result.Country);
     console.log("Language: " + result.Language);
     console.log("Plot: " + result.Plot);
     console.log("Actors: " + result.Actors);
-    
+  }
   });
 
-  // not working .......// not working .......// not working .......// not working .......// not working .......// not working .......
+  ///////////////// CODE FOR....do-what-it-says///////////////////////
+
 } else if (process.argv[2] == 'do-what-it-says'){
   var fs = require("fs");
   //read random.txt file
   console.log ('do-what-it-says');
   fs.readFile("random.txt", "utf8", function (error, data) {
     if (error) {
-        return console.log(error)
+        return console.log(error);
+    } else {
+      console.log(data);
 
-}
+      ///not good////
+      var textArr = data.split(",");
+        userCommand = textArr[0];
+        userInput = textArr[1];
 
-})
-}
+
+        
+      }
+    });
+  
+      };
+    
+     
+
 
 
